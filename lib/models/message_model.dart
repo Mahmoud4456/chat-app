@@ -9,7 +9,7 @@ class MessageModel {
   factory MessageModel.fromJson(json) {
     return MessageModel(
       id : json["id"],
-      messages: json[kMessagesCollection] ?? "", // استخدم string فارغة إذا كانت القيمة null
+      messages: json["messages"] ?? "", // استخدم string فارغة إذا كانت القيمة null
     );
   }
 }
@@ -27,10 +27,11 @@ class MessageServices {
       //  print("+++++++${snapshot.docs}");
       return snapshot.docs.map((doc) {
         final docData = doc.data();
-        // print("---------$docData");
+       // print("---------$docData");
         if (docData["messages"] == null) {
           print("Warning: Null message found in document ${doc.id}");
         }
+       // print("9999999999999${MessageModel.fromJson(docData)}");
         return MessageModel.fromJson(docData);
       }).toList();
     });

@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.id : (context) => LoginScreen(),
         RegisterScreen.id : (context) => const RegisterScreen(),
         ChatScreen.id : (context) => ChatScreen(),
-        'MyHomePage' : (context) => MyHomePage() ,
+        //'MyHomePage' : (context) => MyHomePage() ,
       },
       initialRoute: LoginScreen.id ,
     ) ;

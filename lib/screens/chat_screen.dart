@@ -5,7 +5,7 @@ import 'components/chat_buble.dart';
 import 'components/constants.dart';
 
 class ChatScreen extends StatefulWidget {
-  ChatScreen({Key? key}) : super(key: key);
+  const ChatScreen({super.key});
 
   static String id = "ChatScreen";
 
@@ -22,7 +22,8 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-   var email = ModalRoute.of(context)!.settings.arguments;
+   Object? email = ModalRoute.of(context)!.settings.arguments  ;
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -47,11 +48,12 @@ class _ChatScreenState extends State<ChatScreen> {
             child: StreamBuilder<List<MessageModel>>(
               stream: MessageServices().getDataMessageStream(),
               builder: (context, snapshot) {
+                print(snapshot.data);
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 }
                 if (snapshot.hasError) {
-                  return Center(child: Text('Error: ${snapshot.error}'));
+                  return Center(child: Text('---Error: ${snapshot.error}'));
                 }
                 if (!snapshot.hasData || snapshot.data!.isEmpty) {
                   return const Center(child: Text('No messages found'));
@@ -69,7 +71,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: TextField(
               controller: controller,
               onSubmitted: (data) {
@@ -78,7 +80,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     .collection("messages")
                     .add({"messages": data,
                   "CreatAt": DateTime.now(),
-                "id":email
+                "id": email
                 });
                 controller.clear();
 
@@ -100,13 +102,13 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  void _scrollDown() {
-    scrollController.animateTo(
-      0,
-      curve: Curves.easeOut,
-      duration: const Duration(seconds: 2),
-    );
-  }
+  // void _scrollDown() {
+  //   scrollController.animateTo(
+  //     0,
+  //     curve: Curves.easeOut,
+  //     duration: const Duration(seconds: 2),
+  //   );
+  // }
 }
 
 // import 'package:firebase_e1/models/message_model.dart';

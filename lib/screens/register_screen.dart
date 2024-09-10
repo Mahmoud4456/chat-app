@@ -96,7 +96,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       setState(() {});
                       try {
                         await register();
-                        Navigator.pushNamed(context, ChatScreen.id);
+                        Navigator.pushNamed(context, ChatScreen.id , arguments:email);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == "email-already-in-use") {
                           snackbarMassege(context, "this email already used");
@@ -108,7 +108,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         snackbarMassege(context, "error !!");
                       }
                       isLoading = false;
-                      setState(() {});
+                      setState(() {
+
+                      });
                     } else {}
                   },
                 ),
