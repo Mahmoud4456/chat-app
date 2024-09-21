@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_e1/models/ai_sample.dart';
 import 'package:firebase_e1/screens/chat_screen.dart';
 import 'package:firebase_e1/screens/login_screen.dart';
 import 'package:firebase_e1/screens/register_screen.dart';
+import 'package:firebase_e1/screens/splash_screen.dart';
 
 import 'package:flutter/material.dart';
 
@@ -31,10 +31,10 @@ class MyApp extends StatelessWidget {
       routes:  {
         LoginScreen.id : (context) => LoginScreen(),
         RegisterScreen.id : (context) => const RegisterScreen(),
-        ChatScreen.id : (context) => ChatScreen(),
-        //'MyHomePage' : (context) => MyHomePage() ,
+        ChatScreen.id : (context) => const ChatScreen(),
+        SplashScreen.id : (context) => SplashScreen() ,
       },
-      initialRoute: LoginScreen.id ,
+      initialRoute: SplashScreen.id ,
     ) ;
   }
 }
