@@ -1,6 +1,7 @@
 import 'package:firebase_e1/screens/components/constants.dart';
 import 'package:firebase_e1/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
   static String id = "Splash screen";
@@ -16,10 +17,10 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 1),
       vsync: this,
     )..repeat(reverse: true );
-    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOutBack);
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn);
   }
 
   @override
@@ -29,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   }
 
   Future<void> delay()async {
-   await Future.delayed(const Duration(seconds: 4));
+   await Future.delayed(const Duration(seconds: 5));
   Navigator.pushNamed(context, LoginScreen.id );
 
   }
@@ -42,6 +43,10 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Lottie.asset(
+              'assets/images/chat_phone.json',
+              height: 150,
+            ),
             Image.asset(
               'assets/images/scholar.png',
               width: 150,
@@ -72,3 +77,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     );
   }
 }
+
+
+
+
+
